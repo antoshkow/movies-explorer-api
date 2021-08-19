@@ -20,3 +20,7 @@
   - MongoDB
 
 4. Системные требования: язык JavaScript; web-браузер (браузер автора - Opera); фреймворк - express; расширения: Node.js, mongoDB, mongoDB Compass
+
+5. `ip-адрес сервера`: <code>193.32.219.163</code>
+
+6. [Ссылка на api, Яндекс.Облако.](https://api.antoshkow.movies-exp.nomoredomains.monster/ "Ссылка на деплой.")
