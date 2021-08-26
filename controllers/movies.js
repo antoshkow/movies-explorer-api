@@ -2,14 +2,21 @@ const Movie = require('../models/movie');
 const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 const ForbiddenError = require('../errors/ForbiddenError');
+const {
+  NOT_FOUND_FILMS_MSG,
+  NOT_FOUND_FILM_MSG,
+  FORBIDDEN_FILM_MSG,
+  SUCCESS_DELETE_FILM_MSG,
+  BAD_REQUEST_MSG,
+} = require('../utils/constants');
 
 module.exports.getMovies = (req, res, next) => {
   Movie.find({})
     .orFail(() => {
-      throw new NotFoundError('Фильмы не найдены');
+      throw new NotFoundError(NOT_FOUND_FILMS_MSG);
     })
     .then((movies) => {
-      res.status(200).send(movies);
+      res.send(movies);
     })
     .catch(next);
 };
@@ -37,10 +44,10 @@ module.exports.createMovie = (req, res, next) => {
     movieId,
     owner,
   })
-    .then((movie) => res.status(200).send(movie))
+    .then((movie) => res.send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        const error = new BadRequestError('Переданы некорректные данные');
+        const error = new BadRequestError(BAD_REQUEST_MSG);
         next(error);
       } else {
         next(err);
@@ -53,23 +60,22 @@ module.exports.deleteMovie = (req, res, next) => {
   const { _id } = req.params;
 
   Movie.findById(_id)
+    .orFail(new NotFoundError(NOT_FOUND_FILM_MSG))
     .then((movie) => {
       if (movie.owner.toString() === owner) {
-        Movie.deleteOne({ _id })
+        return Movie.deleteOne({ _id })
           .then(() => {
-            res.status(200).send({ message: 'Фильм успешно удален!' });
-          });
-      } else {
-        const error = new ForbiddenError('Нельзя удалить чужой фильм!');
-        next(error);
+            res.send(SUCCESS_DELETE_FILM_MSG);
+          })
+          .catch(next);
       }
+      throw new ForbiddenError(FORBIDDEN_FILM_MSG);
     })
     .catch((err) => {
-      if (err) {
-        const error = new NotFoundError('Фильм с указанным id не найден');
+      if (err.name === 'CastError') {
+        const error = new BadRequestError(BAD_REQUEST_MSG);
         next(error);
-      } else {
-        next(err);
       }
+      next(err);
     });
 };

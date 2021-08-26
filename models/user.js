@@ -20,10 +20,9 @@ const userSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    default: 'Новый пользователь',
     minlength: 2,
     maxlength: 30,
-    required: false,
+    required: true,
   },
 });
 

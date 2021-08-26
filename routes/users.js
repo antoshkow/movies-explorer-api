@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const { userValidation } = require('../middlewares/validation');
+const { userValidation } = require('../middlewares/validation');
 
 const {
   getCurrentUser, updateUser,
@@ -9,7 +9,7 @@ router.get('/users/me', getCurrentUser);
 
 router.patch(
   '/users/me',
-  // userValidation,
+  userValidation,
   updateUser,
 );
 
