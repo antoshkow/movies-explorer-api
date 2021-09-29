@@ -14,11 +14,13 @@ const LIMIT = {
 const ALLOWED_CORS = process.env.ALLOWED_CORS ? process.env.ALLOWED_CORS.split(',') : [
   'http://localhost:3000',
   'http://localhost:5000',
-  'api.antoshkow.movies-exp.nomoredomains.monster',
-  'antoshkow.movies-explorer.nomoredomains.monster',
+  'https://api.antoshkow.movies-exp.nomoredomains.monster',
+  'http://api.antoshkow.movies-exp.nomoredomains.monster',
+  'https://antoshkow.movies-explorer.nomoredomains.monster',
+  'http://antoshkow.movies-explorer.nomoredomains.monster',
 ];
 
-const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+const DEFAULT_ALLOWED_METHODS = 'GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS';
 
 module.exports = {
   PORT, JWT_MODE, DB_MODE, LIMIT, ALLOWED_CORS, DEFAULT_ALLOWED_METHODS,

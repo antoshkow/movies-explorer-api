@@ -96,7 +96,8 @@ module.exports.login = (req, res, next) => {
       res.cookie('jwt', token, {
         maxAge: 3600000,
         httpOnly: true,
-        sameSite: true,
+        secure: true,
+        sameSite: 'none',
       });
 
       res.send({ token });
@@ -108,7 +109,8 @@ module.exports.logout = (req, res, next) => {
   res.clearCookie('jwt', {
     maxAge: 3600000,
     httpOnly: true,
-    sameSite: true,
+    secure: true,
+    sameSite: 'none',
   });
 
   res.status(202).send({ message: 'Куки успешно удалены' })

@@ -9,6 +9,7 @@ const router = require('./routes/index');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const limiter = require('./middlewares/limiter');
+const corsHandler = require('./middlewares/corsHandler');
 const { PORT, DB_MODE } = require('./utils/config');
 
 const app = express();
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(cors());
+app.use(corsHandler);
 app.use('/', router);
 
 // Обработка ошибок
