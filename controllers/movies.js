@@ -11,7 +11,8 @@ const {
 } = require('../utils/constants');
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({})
+  const owner = req.user._id;
+  Movie.find({ owner })
     .orFail(() => {
       throw new NotFoundError(NOT_FOUND_FILMS_MSG);
     })

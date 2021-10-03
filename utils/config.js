@@ -8,7 +8,7 @@ const DB_MODE = NODE_ENV === 'production' ? DB : 'mongodb://localhost:27017/movi
 
 const LIMIT = {
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 1000,
 };
 
 const ALLOWED_CORS = process.env.ALLOWED_CORS ? process.env.ALLOWED_CORS.split(',') : [

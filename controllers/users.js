@@ -106,8 +106,8 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.logout = (req, res, next) => {
-  res.clearCookie('jwt', {
-    maxAge: 3600000,
+  res.cookie('jwt', 'token', {
+    maxAge: 0,
     httpOnly: true,
     secure: true,
     sameSite: 'none',
