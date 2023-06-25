@@ -21,4 +21,4 @@
 
 4. System preferences: Node.js; framework - express; extensions: Node.js, mongoDB, mongoDB Compass.
 
-5. `heroku address`: <code>here</code>
+5. [heroku address.](https://antoshkow-movies-explorer-api-a0c3f1feb873.herokuapp.com/ "heroku address.")
