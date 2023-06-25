@@ -1,5 +1,5 @@
 const {
-  PORT = 3000, NODE_ENV, JWT_SECRET, DB, SITE_URL,
+  PORT = 3000, NODE_ENV, JWT_SECRET, DB, SITE_URL, BACK_URL,
 } = process.env;
 
 const JWT_MODE = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
@@ -15,6 +15,7 @@ const ALLOWED_CORS = process.env.ALLOWED_CORS ? process.env.ALLOWED_CORS.split('
   'http://localhost:3000',
   'http://localhost:5000',
   SITE_URL,
+  BACK_URL,
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
