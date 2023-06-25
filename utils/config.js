@@ -4,7 +4,7 @@ const {
 
 const JWT_MODE = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
 
-const DB_MODE = NODE_ENV === 'production' ? DB : 'mongodb://localhost:27017/moviesdb';
+const DB_MODE = NODE_ENV === 'production' ? DB : 'mongodb://127.0.0.1:27017/moviesdb';
 
 const LIMIT = {
   windowMs: 15 * 60 * 1000,
