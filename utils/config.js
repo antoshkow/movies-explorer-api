@@ -1,5 +1,5 @@
 const {
-  PORT = 3000, NODE_ENV, JWT_SECRET, DB,
+  PORT = 3000, NODE_ENV, JWT_SECRET, DB, SITE_URL,
 } = process.env;
 
 const JWT_MODE = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
@@ -14,8 +14,7 @@ const LIMIT = {
 const ALLOWED_CORS = process.env.ALLOWED_CORS ? process.env.ALLOWED_CORS.split(',') : [
   'http://localhost:3000',
   'http://localhost:5000',
-  'api.antoshkow.movies-exp.nomoredomains.monster',
-  'antoshkow.movies-explorer.nomoredomains.monster',
+  SITE_URL,
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
