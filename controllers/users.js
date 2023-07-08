@@ -10,7 +10,7 @@ const {
   CONFLICT_UPDATE_USER_MSG,
   CONFLICT_CREATE_USER_MSG,
 } = require('../utils/constants');
-const { JWT_MODE } = require('../utils/config');
+const { JWT_MODE, SITE_URL } = require('../utils/config');
 
 module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
@@ -95,8 +95,10 @@ module.exports.login = (req, res, next) => {
 
       res.cookie('jwt', token, {
         maxAge: 3600000,
-        httpOnly: true,
-        sameSite: true,
+        secure: true,
+        httpOnly: false,
+        sameSite: 'None',
+        domain: SITE_URL,
       });
 
       res.send({ token });
@@ -107,8 +109,10 @@ module.exports.login = (req, res, next) => {
 module.exports.logout = (req, res, next) => {
   res.clearCookie('jwt', {
     maxAge: 3600000,
-    httpOnly: true,
-    sameSite: true,
+    secure: true,
+    httpOnly: false,
+    sameSite: 'None',
+    domain: SITE_URL,
   });
 
   res.status(202).send({ message: 'Куки успешно удалены' })
