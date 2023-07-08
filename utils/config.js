@@ -1,5 +1,5 @@
 const {
-  PORT = 3000, NODE_ENV, JWT_SECRET, DB, SITE_URL, BACK_URL,
+  PORT = 3005, NODE_ENV, JWT_SECRET, DB, SITE_URL, BACK_URL,
 } = process.env;
 
 const JWT_MODE = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';

@@ -6,12 +6,9 @@ module.exports = (req, res, next) => {
   const { origin } = req.headers;
 
   if (ALLOWED_CORS.includes(origin)) {
-    console.log('if');
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', 'true');
   }
-
-  console.log(origin, ALLOWED_CORS);
 
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
